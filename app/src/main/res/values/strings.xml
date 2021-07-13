@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TMDB_API_Retrofit</string>
+    <string name="api_key">893ae533a711d05e99a29d52a30419ed</string>
+</resources>

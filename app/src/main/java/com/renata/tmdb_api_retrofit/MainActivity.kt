@@ -25,20 +25,26 @@ class MainActivity : AppCompatActivity() {
         loading = findViewById(R.id.loading)
         rvMovies = findViewById(R.id.rvMovies)
 
+        //variáveis para fazer as chamadas
         val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
         val call = request.getMovies(getString(R.string.api_key))
 
+        //enviando o request para  network
+        //passamos uma callback que vai retornar no formato de popularmovies object
         call.enqueue(object : Callback<PopularMovies>{
+
+            // a chamada é retornada coletando dados adicionando ao recyclerview
             override fun onResponse(call: Call<PopularMovies>, response: Response<PopularMovies>) {
                 if (response.isSuccessful){
                     loading.visibility = View.GONE
                     rvMovies.apply {
-                        setHasFixedSize(true)
+                        setHasFixedSize(true) //significa que o RecyclerView possui filhos (itens) com largura e altura fixas.
                         layoutManager = LinearLayoutManager(this@MainActivity)
                         adapter = MoviesAdapter(response.body()!!.results)
                     }
                 }
             }
+            //
             override fun onFailure(call: Call<PopularMovies>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
             }

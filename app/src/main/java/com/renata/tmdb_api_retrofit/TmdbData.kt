@@ -1,5 +1,5 @@
 package com.renata.tmdb_api_retrofit
-
+//como nossas infos do network vão ser e guardar temporariamente
 data class PopularMovies(
     val results: List<Result>
 )

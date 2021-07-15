@@ -1,0 +1,2 @@
+rootProject.name = "TMDB_API_Retrofit"
+include ':app'
